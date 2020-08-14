@@ -1,7 +1,3 @@
- # https://stackoverflow.com/questions/41487473/nameerror-name-request-is-not-defined
-# https://stackoverflow.com/questions/34704997/jquery-autocomplete-in-flask
-# https://kite.com/python/docs/flask.jsonify
-
 import json
 import flask
 from api import BookSimilarity
@@ -25,9 +21,6 @@ def autocomplete():
 
 @app.route('/recommend')
 def recommend():
-	# Dynamic page help:
-	# https://stackoverflow.com/questions/40963401/flask-dynamic-data-update-without-reload-page/40964086
-	
 	searchText = flask.request.args.get('jsdata')
 
 	output = ''
@@ -37,8 +30,6 @@ def recommend():
 		if results is not None:
 			output = json.loads(results[['title', 'url']].to_json(orient='records'))#results.title.values
 
-	# TODO: Convert a fuller version to JSON rather than just an array (title, url, etc.) and render as a table instead.
-	# https://stackoverflow.com/questions/48050769/pandas-dataframe-to-flask-template-as-a-json
 	print(output)
 	return flask.render_template('results.html', recommendations=output)
 

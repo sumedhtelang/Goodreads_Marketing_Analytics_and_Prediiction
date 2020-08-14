@@ -20,12 +20,8 @@ class BookSimilarity(object):
             print('Title not found in index mapping.')
             return None
 
-        # Get the index of the passed in book's title.
         book_idx = self.__title_to_idx[title]
-
-        # Get scores from the cosine similarity matrix for this index.
         scores = pd.Series(self.__cos_sim[book_idx]).sort_values(ascending=False)
-        # Get the indices of the top 10 books (sub the first as it's the input book).
         indices = list(scores.iloc[1:11].index)
 
         return self.__book_data.iloc[indices]
